@@ -15,7 +15,7 @@ def fetch():
     for cat in cats:
         new_cat = {
             "id": cat.id,
-            "name": cat.name
+            "name": cat.name,
             "price": cat.price,
             "breed": cat.breed
         }
@@ -37,7 +37,7 @@ def add():
     return json.dumps("Added"), 200
 
 
-@app.route('/remove/<cat_id>', method=['DELETE'])
+@app.route('/remove/<cat_id>', methods=['DELETE'])
 def remove(cat_id):
     Cats.query.filter_by(id=cat_id).delete()
     db.session.commit()
@@ -49,6 +49,6 @@ def edit(cat_id):
     data = request.get_json()
     new_price = data['price']
     cat_to_update = Cats.query.filter_by(id=cat_id).all()[0]
-    cat_to_update.price  = new_price
+    cat_to_update.price = new_price
     db.session.commit()
     return json.dumps("Edited"), 200

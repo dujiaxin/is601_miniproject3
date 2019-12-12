@@ -17,7 +17,7 @@ def delete_instance(model, id):
     commit_changes()
 
 
-def edit_instances(model, id, **kwargs)
+def edit_instances(model, id, **kwargs):
     instance = model.query.filter_by(id=id).all()[0]
     for attr, new_value in kwargs:
         setattr(instance, attr, new_value)

@@ -7,8 +7,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - type: bind
-      - db_volume: C:\Users\JiaxinDu\Projects\mini3\postgresql
+      - db_volume:/var/lib/postgresql
 
 volumes:
   db_volume:
