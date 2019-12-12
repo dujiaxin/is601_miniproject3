@@ -1,0 +1,15 @@
+version: '3.5'
+services:
+  database:
+    container_name: postgres
+    image: postgres:latest
+    env_file: database.conf
+    ports:
+      - 5432:5432
+    volumes:
+      - type: bind
+      - db_volume: C:\Users\JiaxinDu\Projects\mini3\postgresql
+
+volumes:
+  db_volume:
+    
