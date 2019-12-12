@@ -55,8 +55,25 @@ class UserModel(db.Model):
   def get_one_user(id):
     return UserModel.query.get(id)
 
+  @staticmethod
+  def get_user_by_email(value):
+    return UserModel.query.filter_by(email=value).first()
+
+  def __generate_hash(self, password):
+    return bcrypt.generate_password_hash(password, rounds=10).decode("utf-8")
+
+  def check_hash(self, password):
+    return bcrypt.check_password_hash(self.password, password)
+
   def __repr(self):
     return '<id {}>'.format(self.id)
 
-
+class UserSchema(Schema):
+  id = fields.Int(dump_only=True)
+  name = fields.Str(required=True)
+  email = fields.Email(required=True)
+  password = fields.Str(required=True, load_only=True)
+  created_at = fields.DateTime(dump_only=True)
+  modified_at = fields.DateTime(dump_only=True)
+  blogposts = fields.Nested(BlogpostSchema, many=True)
 
