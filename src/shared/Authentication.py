@@ -73,7 +73,7 @@ class Auth():
           response=json.dumps(data['error']),
           status=400
         )
-
+        
       user_id = data['data']['user_id']
       check_user = UserModel.get_one_user(user_id)
       if not check_user:

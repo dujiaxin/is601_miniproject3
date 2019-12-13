@@ -49,7 +49,7 @@ def get_a_user(user_id):
   user = UserModel.get_one_user(user_id)
   if not user:
     return custom_response({'error': 'user not found'}, 404)
-
+  
   ser_user = user_schema.dump(user).data
   return custom_response(ser_user, 200)
 
@@ -111,7 +111,7 @@ def login():
   token = Auth.generate_token(ser_data.get('id'))
   return custom_response({'jwt_token': token}, 200)
 
-
+  
 
 def custom_response(res, status_code):
   """
